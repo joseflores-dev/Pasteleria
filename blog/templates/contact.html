@@ -1,0 +1,48 @@
+{% extends 'base.htm' %}
+
+{% load staticfiles %}
+{% block content %}
+
+<div class="container">
+  <div class="bodyInner">
+    <div class="row">
+      <div class="col-lg-6" >
+        <div class="card" style="width: 24rem;text-align: center;">
+          <img src="{{ perfil.foto.url }}" style="width:100%" class="card-img-top" alt="...">
+          <div class="card-body" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif  ">
+              <br><br>
+            <p class="card-text" >{{ perfil.descripcion }}</p>
+<br>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-align:center;">
+        <div class="card" style="font-family: Impact;">
+          <div class="card-tittle">
+            <h1>{{ perfil.titulo1 }}</h1>
+          </div>
+          <br>
+          <div class="card-body">
+            {{ perfil.descripcion1 }}
+          </div>
+          <br>
+          <div class="card-tittle">
+            <h1>{{ perfil.titulo2 }}</h1>
+          </div>
+          <br>
+          <div class="card-body">
+            {{ perfil.descripcion2 }}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<br><br>
+
+
+{% endblock %}

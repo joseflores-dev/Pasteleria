@@ -1,0 +1,141 @@
+{% extends 'base.htm' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+
+<div class="mainTitle">
+  <div class="container">
+    <br>
+    <h1>Producto de Temporada</h1>
+    <p>
+     ¿Algun texto Aqui?!
+    </p>
+  </div>
+  <br>
+</div>
+
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+
+<div class="container marketing">
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+
+    {% for vip in productos %}
+      {% if vip.tipo == "VIP" %}
+      <div class="col-lg-4">
+          <img class="img-circle" src="{{ vip.foto.url }}" alt="Generic placeholder image" style="height: 150px;width: 250px">
+          <h2>{{ vip.titulo }}</h2>
+          <p>{{ vip.descripcion }}</p>
+          {% if user.is_authenticated %}
+          <p><a class="btn btn-default" href="{% url 'blog:verProducto' pk=vip.pk %}" role="button">$ {{ vip.precioVenta|intcomma }} Pedir Producto &raquo;</a></p>
+          {% else %}
+          <a class="btn btn-default" href="{% url 'blog:login' %}" role="button">$ {{ vip.precioVenta|intcomma }} Iniciar Sesion para pedir el producto &raquo;</a></p>
+
+          
+          {% endif %}
+
+ 
+        </div><!-- /.col-lg-4 -->
+      {% endif %}
+  
+    {% endfor %}
+ 
+  </div><!-- /.row -->
+</div>
+
+
+
+
+<div class="introSection">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <h3>{{ perfil.titulo1 }}</h3>
+        <p>
+          {{perfil.descripcion1}}
+        </p>
+      </div>
+
+      <div class="col-lg-4">
+        <form method="post">
+          {% csrf_token %}
+          {{ mensaje }}
+          <br>
+          <br>
+          <button class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+
+      <div class="col-lg-3">
+        
+        <p>
+          <img src="{{ perfil.foto.url }}" style="width: 250px;height: 250px;" alt="">
+          
+          {{ perfil.descripcion }}
+
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container marketing">
+  <div id="myCarousel4" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Fish and Chips <span class="text-muted">It's very very testy</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+              semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+              commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <img src="{% static 'images/fish-and-chips.png' %}" alt="Fish and Chips">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="item">
+        <div class="row featurette">
+          <div class="col-md-5">
+            <img src="{% static 'images/burger.png' %}" alt="Generic placeholder image">
+          </div>
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Oh yeah, very nice Burger. <span class="text-muted">Delicious.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+              semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+              commodo.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="item">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Try yourself <span class="text-muted">Testy</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+              semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+              commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <img class="img-circle" src="{% static 'images/drinks.png' %}" alt="Generic placeholder image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.carousel -->
+</div><!-- /.container -->
+
+
+{% endblock %}

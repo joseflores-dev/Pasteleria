@@ -1,0 +1,56 @@
+{% extends 'base.htm' %}
+
+
+{% block content %}
+
+<div class="container">
+    <h1 style="text-align: center;padding-top: 30px">Pedidos Realizados</h1>
+    <div style="padding-bottom: 40px;">
+        <table id="mitabla" class="display">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for datos in pedidos %}
+                    {% for product in producto %}
+                  
+                    <tr>
+                    <td>{{ datos.producto }}</td>
+                    <td>{{ datos.cantidad }}</td>
+                    <td>{{ datos.total }}</td>
+                    <td>{{ datos.estado }}</td>
+                    <td>
+                        
+                        <a href="{% url 'blog:verProducto' pk=product.pk %}" class="btn btn-primary">Ver Producto</a>
+                        {% if  datos.estado == "pedido" %}
+                        <button  class="btn btn-danger eliminarReservaAjax" idreserva="{{ datos.id }}">Eliminar Reserva</button>
+                        {% endif %}
+                    </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+              
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+    {% for resultado in pedidos %}
+
+    {% endfor %}
+</div>
+
+
+<h1>hola</h1>
+
+
+

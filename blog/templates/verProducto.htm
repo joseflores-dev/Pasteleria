@@ -1,0 +1,156 @@
+{% extends 'base.htm' %}
+{% load humanize %}
+{% block content %}
+
+<section class="product-sec" style="background-image: url('../../static/images/ventaPro.jpg'); -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+
+    <div class="container">
+
+
+        <div class="row" style="padding-top: 100px;">
+            <div class="col-lg-4" style="padding-left:0px;font-style: italic;text-align: center">
+                <!-- main slider carousel -->
+                <div id="Presentacion">
+                    <!-- main slider carousel items -->
+                    <div class="productoSeleccionado">
+                        <div class="contenidoProducto" data-slide-number="0">
+                            <h1 style="padding-left: 30px;color: black;padding-top:15px">{{ producto.titulo }}</h1>
+                            <img src="{{ producto.foto.url }}" class="img-circle" style="height: 150px;width: 250px">
+
+                            <p style="padding-left: 30px;">{{ producto.descripcion }}</p>
+                        </div>
+
+                    </div>
+                    <!-- main slider carousel nav controls -->
+
+                </div>
+                <!--/main slider carousel-->
+            </div>
+            <br>
+            <div class="col-lg-8">
+
+                <div class="Acomodado">
+
+                    <ul style="list-style: none; text-align: center;">
+
+                        {% if verificarReserva %}
+                        <li>
+                            <p>Su pedido se encuentra actualmente en espera <br>
+                                a ser visto por un administrador</p>
+                        </li>
+                        {% else %}
+                        <li style="font-style: italic;color: black">
+
+                            <input class="precioBase" type="hidden" value="{{ producto.precioVenta }}">
+                            <span class="name"><strong>Precio :</strong> </span><span class="clm">
+                                {{ producto.precioVenta| intcomma }}</span>
+
+
+
+
+                        </li>
+                        {% endif %}
+
+                        <li>
+                            {% if verificarReserva %}
+
+
+                            <form method="POST">
+
+                                {% csrf_token %}
+
+                                {{ formularioCancelar}}
+                                <br>
+                                <button class="btn btn-danger" type="submit"> Cancelar Pedido</button>
+
+
+
+                            </form>
+
+
+
+
+
+                            {% else %}
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="cantidadesPedido" >
+                                    {{ reserva }}
+                                </div>
+
+                                <br>
+                                <div class="precioCalculado" style="font-style: italic;color: black">
+                                    <span class="name"><strong>Total</strong> </span><span class="clm">: <span
+                                            class="totalMontoPedido">0</span> </span>
+                                    <span class="price final"></span>
+                                </div>
+
+
+
+                                <br>
+                                <br>
+                                <div class="btn-sec">
+
+                                    <button class="btn btn-success" type="submit"> Reservar</button>
+
+                                </div>
+
+
+                            </form>
+                            {% endif %}
+
+                            {% load sweetify %}
+                            {% sweetify %}
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</section>
+
+
+{% if relacionados|length > 1  %}
+<section class="related-books">
+    <div class="container">
+        <h2 style="padding-top: 30px;padding-bottom: 30px;">Productos que te podrian interesar</h2>
+        <div class="recomended-sec" style="text-align: center;">
+            <div class="row">
+                {% for ofertas in relacionados %}
+                {% if ofertas.titulo != producto.titulo %}
+                <div class="col-lg-4">
+                    <div class="item">
+                        <img style="width: 250px;" src="{{ ofertas.foto.url }}" alt="img">
+                        <h3>{{ ofertas.titulo }}</h3>
+
+                        <p><a class="btn btn-default" href="{% url 'blog:verProducto' pk=ofertas.pk %}" role="button">$
+                                {{ ofertas.precioVenta|intcomma }} Pedir Producto &raquo;</a></p>
+
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% load static %}
+{% else %}
+
+{% endif %}
+
+
+<br><br><br><br><br>
+
+{% endblock %}

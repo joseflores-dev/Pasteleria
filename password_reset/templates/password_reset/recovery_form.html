@@ -1,0 +1,24 @@
+{% extends 'base.htm' %}
+{% load i18n %}
+
+{% block title %}{% trans "Password recovery" %}{% endblock %}
+{% block content %}
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('../../static/images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33" style="margin-top: 100px;">
+			<div class="pass-form">
+				<h1>Recupera tu contraseña</h1>
+				<br>
+				<form id="pass-form" method="post" action="{{ url }}">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<br>
+					<p><input type="submit" name="pass-recover" value="{% trans 'Recuperar mi contraseña' %}"></p>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

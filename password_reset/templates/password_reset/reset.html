@@ -1,0 +1,33 @@
+{% extends 'base.htm' %}
+{% load i18n %}
+
+{% block content %}
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('../../../static/images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33" style="margin-top: 100px;">
+				<div class="new-pass">
+						<br>
+						<h1>Recuperación de contraseña:</h1>
+						<br>
+						{% if invalid %}{% url "password_reset_recover" as recovery_url %}
+						<p>{% blocktrans %}Lo sentimos, el link de recuperación de contraseña es inválido. Aún puedes <a
+								href="{{ recovery_url }}">solicitar
+								uno nuevo</a>.{% endblocktrans %}</p>
+						{% else %}
+						<p>{% blocktrans %}Hola, <strong>{{ username }}</strong>. Por favor escoge tu nueva contraseña:{% endblocktrans %}
+						</p>
+						<br>
+						<form method="post" action="{% url 'password_reset_reset' token %}">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<br>
+							<p><input type="submit" name="submit" value="{% trans 'Enviar' %}"></p>
+						</form>
+					</div>
+					
+		</div>
+	</div>
+</div>
+
+{% endif %}
+{% endblock %}

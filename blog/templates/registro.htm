@@ -1,0 +1,124 @@
+{% extends 'base.htm' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('static/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33" style="margin-top: 100px;">
+            <form class="login100-form validate-form flex-sb flex-w" method="POST">
+                {% csrf_token %}
+                <span class="login100-form-title p-b-53">
+                    Registro
+                </span>
+
+
+
+                <div class="p-t-31 p-b-9">
+                    <span class="txt1">
+                        Nombre de la cuenta
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Username is required">
+
+                    {{ Registro.username }}
+                    <span class="focus-input100"></span>
+                    <div class="p-t-13 p-b-9">
+                        <ul style="padding-left: 10px">
+                            <li><strong>   150 caracteres o menos, Letras,Digitos y @/./+/-/</strong></li>
+                        </ul>
+                    </div>
+                 
+                </div>
+                
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Correo Electronico
+                    </span>
+
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <!-- <input class="input100" type="password" name="pass"> -->
+                    {{ Registro.email }}
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="p-t-13 p-b-9">
+                    <span class="txt1">
+                        Nombres
+                    </span>
+
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <!-- <input class="input100" type="password" name="pass"> -->
+                    {{ Registro.first_name }}
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="p-t-13 p-b-9">
+                        <span class="txt1">
+                            Apellido
+                        </span>
+    
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <!-- <input class="input100" type="password" name="pass"> -->
+                        {{ Registro.last_name }}
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="p-t-13 p-b-9">
+                            <span class="txt1">
+                                Contraseña
+                            </span>
+        
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <!-- <input class="input100" type="password" name="pass"> -->
+                            {{ Registro.password1 }}
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="p-t-13 p-b-9">
+                                <span class="txt1">
+                                    Repetir Contraseña
+                                </span>
+            
+                            </div>
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <!-- <input class="input100" type="password" name="pass"> -->
+                                {{ Registro.password2 }}
+                                <span class="focus-input100"></span>
+                                <div class="p-t-13 p-b-9">
+                                    <ul style="padding-left: 10px">
+                                        <li><strong> La Contraseña debe Contener 1 Mayuscula</strong></li>
+                                        <li><strong> Debe contener 8 o mas Caracteres</strong> </li>
+                                        <li><strong> No puede estar conformada solo de numeros</strong> </li>
+                                    </ul>
+                                </div>
+                              
+                            </div>
+                   
+
+    
+
+
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn">
+                        Registrar
+                    </button>
+                </div>
+
+                <div class="w-full text-center p-t-55">
+                    <span class="txt2">
+                        Bienvenido al sistema de reservas online
+                    </span>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

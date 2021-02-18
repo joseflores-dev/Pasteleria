@@ -1,0 +1,20 @@
+{% extends 'base.htm' %}
+{% load i18n %}
+
+{% block title %}{% trans "Password recovery sent" %}{% endblock %}
+
+{% block content %}
+<div class="limiter">
+	<div class="container-login100" style="background-image: url('../../../static/images/bg-01.jpg');">
+		<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33" style="margin-top: 100px;">
+				<div class="alert-pass">
+						<p>{% blocktrans with ago=timestamp|timesince %}Un email ha sido enviado a <strong>{{ email }}</strong>. Use
+							el link para establecer una nueva contraseña.{% endblocktrans %}</p>
+						<br>
+						<input type="button" name="back" value="Volver" onclick="history.go(-2)">
+					</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
